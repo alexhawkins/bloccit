@@ -43,6 +43,8 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+# Build ficticious data automatically to fill our database tables
+gem 'faker'
 
 
 # Use ActiveModel has_secure_password
