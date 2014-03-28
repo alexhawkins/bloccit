@@ -6,4 +6,4 @@ Create a Reddit clone to teach the fundamental concepts of web development and R
 
 ##CODE CREDIT
 ------------------------------------------------------
-Made with my mentor [Chris Peck](https://www.bloc.io/mentors/chris-beck) at [Bloc](http://bloc.io)
+Made with my mentor [Chris Beck](https://www.bloc.io/mentors/chris-beck) at [Bloc](http://bloc.io)
