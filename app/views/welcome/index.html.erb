@@ -1,2 +1,38 @@
-<h1>Welcome to Bloccit</h1>
-<p>This is the home page for Bloccit</p>
+<h1>The Future of Bloccit</h1>
+<h3>Why still Not Ready for Production?</h3>
+
+<div class="row">
+  <div class="col-md-8">
+    <p class="lead">
+      Like most of the <strong>Ruby</strong> community, we were pretty excited by the move to generational garbage collection in <em>Ruby 2.1</em>. The new approach promised for shorter GC pauses and better overall performance, and for most of us, it seems to be living up to that promise. 
+    </p>
+    <p>
+      But there are still some serious flaws with the way that memory is managed in Ruby, and you should be aware of these flaws if you’re running any sort of server process — particularly if that server is ever creating large objects (like, say, strings).
+    </p>
+    <blockquote>
+      <p>We noticed two main things when we looked at the data: first, String allocation is the vast majority of our memory usage. Not terribly surprising for a webs erver</p>
+      <footer>Yukihiro Matsumoto <em>in</em>
+        <cite title="MATZ">MATZ Magazine</cite>
+      </footer>
+    </blockquote>
+    <P>
+      These flaws make it not just possible, but likely that your servers will gobble up RAM, and will lead to out-of-memory conditions. And currently, the only solutions are workarounds — hacks that you need to know about.
+    </p>
+  </div>
+  <div class="col-md-4">
+    <h3>Unicorn Weight Watchers</h3>
+    <p>
+      One of the nice features of newer versions of Ruby is the ObjectSpace class which, among other things, gives you the ability to account for memory usage by data type. We used this, along with the GC.stat method, to add some basic memory diagnostics to our request logs (more on this in a later post).
+    </p>
+    <p>
+      After a bit of poking around, we were able to narrow down the culprit for our leak: for various reasons that I won’t go into here, our document requests load some pre-rendered HTML content from disk, and then insert that content into the page layout. In pseudo-code, it looks something like this:
+    </p>
+    <pre>
+      def show_doc
+      @doc = load_doc_from_disk(@doc_key)
+      render_not_found 
+      and return unless @doc
+      end
+    </pre>
+  </div>
+</div>
