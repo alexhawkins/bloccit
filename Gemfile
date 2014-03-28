@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.4'
 
-# Use PostReg for Heroku production environment
+# Use PG for Heroku production environment
 group :production do
   gem 'pg'
 end
@@ -13,6 +13,9 @@ group :development do
 end
 # Use to configure your application to serve static assets
 gem 'rails_12factor', group: :production
+
+# Use Twitter Bootsrap Framework
+gem 'bootstrap-sass', '~> 3.1.1'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.2'
@@ -39,6 +42,8 @@ group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
 end
+
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
