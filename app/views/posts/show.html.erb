@@ -1,3 +1,4 @@
 
 <h1><%= @post.title %></h1>
 <p><%= @post.body %></p>
+<%= link_to "Edit this Post", edit_post_path(@post), class: 'btn btn-success' %>
