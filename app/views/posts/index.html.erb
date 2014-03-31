@@ -6,6 +6,9 @@
       <h4 class="media-heading">
         <%= link_to post.title, post %>
       </h4>
+      <small>
+        &raquo; submitted <%= time_ago_in_words(post.created_at) %> ago by <em><%= post.user.name %></em> | Comments (<%= post.comments.count %>) 
+      </small>
     </div>
   </div>
 <% end %>

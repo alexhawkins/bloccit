@@ -16,6 +16,17 @@ h1 {
   font-weight: bold;
 }
 
+a {
+color: $buttonRed;
+   &:hover
+   {
+    color: $buttonRedBorder;
+   }
+}
+
+.container-fluid{
+  padding: 0px 5%;
+}
 
 //boostrap customizations
 //change color of sign up/ sign in button
