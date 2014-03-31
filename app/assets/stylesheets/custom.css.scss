@@ -1,5 +1,8 @@
 @import "bootstrap";
 
+$buttonRed: #df4747;
+$buttonRedBorder: #990303;
+
 h1 {
   font-weight: bold;
   text-transform: uppercase;
@@ -11,4 +14,48 @@ h1 {
 
 .navbar-brand {
   font-weight: bold;
+}
+
+
+//boostrap customizations
+//change color of sign up/ sign in button
+.btn-primary {
+  background-color: $buttonRed;
+  border-color: $buttonRedBorder;
+    &:hover {
+      background-color: $buttonRedBorder;
+    }
+}
+.btn-success {
+  color: white;
+  background-color: $buttonRed;
+  border-color: $buttonRedBorder;
+  &:hover {
+      background-color: $buttonRedBorder;
+    }
+}
+// navbar background
+.navbar-default .navbar-nav > .active > a{
+  color: white;
+  background-color: $buttonRed;
+  &:hover{
+    background-color: $buttonRedBorder;
+    color: white;
+  }
+}
+//navbar colors font colors
+.navbar-default {
+  background-color: #262626;
+  .navbar-collapse {
+    border-color: #262626;
+  }
+  .navbar-nav > li > a {
+    color: #CDCDCD;
+    &:hover {
+      color:#999;
+    }
+  }
+  .navbar-brand {
+      color: #EBEBEB;
+}
 }
