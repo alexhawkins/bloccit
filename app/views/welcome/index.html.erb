@@ -1,10 +1,19 @@
 <div class="row">
+
   <div class="col-md-8">
     <h1>The Future of Bloccit</h1>
     <h3>Why still Not Ready for Production?</h3>
     <p class="lead">
       Like most of the <strong>Ruby</strong> community, we were pretty excited by the move to generational garbage collection in <em>Ruby 2.1</em>. The new approach promised for shorter GC pauses and better overall performance, and for most of us, it seems to be living up to that promise. 
     </p>
+    <div class="jumbotron">
+      <h1>Bloccit</h1>
+      <p>Bloccit is a resource for sharing links with your friends!</p>
+      <p>
+        <%= link_to "Sign In", new_user_session_path, class: 'btn btn-primary' %> or 
+        <%= link_to "Sign Up", new_user_registration_path, class: 'btn btn-primary' %> today!
+      </p>
+    </div>
     <p>
       But there are still some serious flaws with the way that memory is managed in Ruby, and you should be aware of these flaws if you’re running any sort of server process — particularly if that server is ever creating large objects (like, say, strings).
     </p>
