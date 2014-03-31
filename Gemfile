@@ -44,6 +44,7 @@ end
 # Build ficticious data automatically to fill our database tables
 gem 'faker'
 gem 'devise'
+gem 'pundit'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

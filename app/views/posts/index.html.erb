@@ -1,5 +1,7 @@
 <h1>All Posts</h1>
-<%= link_to "Create New Post", new_post_path(@post), class: 'btn btn-success' %>
+<% if policy(Post.new).create? %>
+  <%= link_to "Create New Post", new_post_path, class: 'btn btn-success' %>
+<% end %>
 <% @posts.each do |post| %>
   <div class="media">
     <div class="media-body">
@@ -13,5 +15,7 @@
   </div>
 <% end %>
 <div class="last-post">
-<%= link_to "Create New Post", new_post_path(@post), class: 'btn btn-success' %>
+<% if policy(Post.new).create? %>
+  <%= link_to "Create New Post", new_post_path, class: 'btn btn-success' %>
+<% end %>
 </div>
