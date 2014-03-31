@@ -5,15 +5,13 @@ gem 'rails', '4.0.4'
 
 # Use PG for Heroku production environment
 group :production do
-  gem 'pg'
+  gem 'pg', '0.15.1'
+  gem 'rails_12factor', '0.0.2'
 end
 # Use Sqlite3 for development environment
 group :development do
-  gem 'sqlite3'
+  gem 'sqlite3', '1.3.8'
 end
-# Use to configure your application to serve static assets
-gem 'rails_12factor', group: :production
-
 # Use Twitter Bootsrap Framework
 gem 'bootstrap-sass', '~> 3.1.1'
 
@@ -45,7 +43,7 @@ end
 
 # Build ficticious data automatically to fill our database tables
 gem 'faker'
-
+gem 'devise'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
