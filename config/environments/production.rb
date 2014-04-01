@@ -79,5 +79,5 @@ Bloccit::Application.configure do
   config.log_formatter = ::Logger::Formatter.new
   config.force_ssl = true
   # http://bloccit.herokuapp.com
-  config.action_mailer.default_url_options = { host: 'bloccit.herokuapp.com' }
+  config.action_mailer.default_url_options = { host: 'ahawkins-bloccit.herokuapp.com' }
 end
