@@ -12,8 +12,14 @@
   <div class="media">
     <div class="media-body">
       <h4 class="media-heading">
-        <%= link_to topic.name, topic %>
+        <%= link_to topic.name, topic %> 
+        <small>
+          (<%= topic.posts.count %>)
+        </small>
       </h4>
+      <small>
+            &raquo; last updated at <%= time_ago_in_words(topic.updated_at) %> ago
+      </small>
     </div>
   </div>
 <% end %>
