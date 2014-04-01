@@ -1,4 +1,10 @@
-<h1>All Topics</h1>
+<ol class="breadcrumb">
+  <li><%= link_to "Home", root_path %></li>
+  <li><em><%= link_to "Topics", topics_path %></em></li>
+</ol>
+<div class="page-header">
+  <h1>All Topics</h1>
+</div>
  <% if policy(Topic.new).create? %>
       <%= link_to "Create New Topic", new_topic_path, class: 'btn btn-success' %>
   <% end %>

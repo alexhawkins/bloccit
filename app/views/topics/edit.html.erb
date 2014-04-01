@@ -1,33 +1,34 @@
-<h1>Edit Topic</h1>
+<ol class="breadcrumb">
+  <li><%= link_to "Home", root_path %></li>
+  <li><%= link_to "Topics", topics_path %></li>
+  <li><em><%= link_to "Edit Topic", edit_topic_path %></em></li>
+</ol>
+
 <div class="row">
   <div class="col-md-4">
-    <p>Guidelines for topics</p>
+    <p>Guidelines for topics:</p>
     <ul>
-      <li>Make sure the it rhymes.</li>
-      <li>Don't use the letter "A".</li>
-      <li>The incessant use of hashtags will get you banned.</li>
+      <li>Make sure the topic is appropriate.</li>
+      <li>Never insult dogs.</li>
+      <li>Smile when you type.</li>
     </ul>
   </div>
   <div class="col-md-8">
     <%= form_for @topic do |f| %>
-      <div class="form-group">
+    <div class="form-group">
         <%= f.label :name %>
-        <%= f.text_field :description, class: 'form-control', placeholder: "Enter topic title" %>
+        <%= f.text_field :name, class: 'form-control', placeholder: "Enter topic name" %>
       </div>
       <div class="form-group">
-        <%= f.label :name %>
-        <%= f.text_area :description, rows: 8, class: 'form-control', placeholder: "Enter topic body" %>
+        <%= f.label :description %>
+        <%= f.text_area :description, rows: 8, class: 'form-control', placeholder: "Enter topic description" %>
       </div>
-
       <div class="form-group">
-      <%= f.label :public, class: 'checkbox' do %>
-        <%= f.check_box :public %> Public topic
-      <% end %>
+        <%= f.label :public, class: 'checkbox' do %>
+          <%= f.check_box :public %> Public topic
+        <% end %>
       </div>
-
-      <div class="form-group">
-        <%= f.submit "Save", class: 'btn btn-success' %>
-      </div>
+      <%= f.submit "Save", class: 'btn btn-success' %>
     <% end %>
   </div>
 </div>

@@ -12,7 +12,6 @@ class TopicsController < ApplicationController
   def show
     @topic = Topic.find(params[:id])
     @posts = @topic.posts
-    authorize @topic
   end
 
   def edit
@@ -35,6 +34,7 @@ class TopicsController < ApplicationController
     @topic = Topic.find(params[:id])
     authorize @topic
     if @topic.update_attributes(params.require(:topic).permit(:name, :description, :public))
+      flash[:notice] = "Topic was updated."
       redirect_to @topic
     else
       flash[:error] = "Error saving topic. Please try again"

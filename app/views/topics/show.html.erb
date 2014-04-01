@@ -1,3 +1,9 @@
+<ol class="breadcrumb">
+  <li><%= link_to "Home", root_path %></li>
+  <li><%= link_to "Topics", topics_path %></li>
+  <li><em><%= link_to  @topic.name, topic_path %></em></li>
+</ol>
+
 <h1><%= @topic.name %></h1>
 
 <% if policy(@topic).update? %>
@@ -9,7 +15,9 @@
     <p class="lead"><%= @topic.description %></p>
     <!--Checks to see if the @topics.posts array is empty. If empty, no posts--> 
       <% if !@topic.posts.empty? %>
-        <h2>Related Posts</h2>
+        <div class="page-header">
+          <h2>Related Posts</h2>
+        </div>
       <% end %>
       <% @topic.posts.each do |post| %>
       <div class="media">

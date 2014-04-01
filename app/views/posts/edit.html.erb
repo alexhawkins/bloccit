@@ -1,3 +1,11 @@
+<ol class="breadcrumb">
+  <li><%= link_to "Home", root_path %></li>
+  <li><%= link_to "Topics", topics_path %></li>
+  <li><%= link_to  @topic.name, topic_path(@topic) %></li>
+  <li><%= link_to  @post.title,  topic_post_path %></li>
+  <li><%= link_to  "Edit Post",  edit_topic_post_path %></li>
+</ol>
+
 <h1>Edit Post</h1>
 <div class="row">
   <div class="col-md-4">
