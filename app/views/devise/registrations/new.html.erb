@@ -1,4 +1,10 @@
-<h2>Sign up</h2>
+<ol class="breadcrumb">
+  <li><%= link_to home_title, root_path %></li>
+  <li><em><%= link_to "Sign up", new_user_registration_path %></em></li>
+</ol>
+<div class="page-header">
+  <h2>Sign up</h2>
+</div>
 
 <div class="row">
   <div class="col-md-8">
@@ -21,7 +27,7 @@
         <%= f.password_field :password_confirmation, class: 'form-control', placeholder: "Enter password confirmation" %>
       </div>
       <div class="form-group">
-        <%= f.submit "Sign up", class: 'btn btn-success' %>
+        <strong><%= f.submit "Sign up", class: 'btn btn-success' %></strong>
       </div>
       <div class="form-group">
         <%= render "devise/shared/links" %>

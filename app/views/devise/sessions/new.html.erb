@@ -1,5 +1,10 @@
-<h2>Sign in</h2>
-
+<ol class="breadcrumb">
+  <li><%= link_to home_title, root_path %></li>
+  <li><em><%= link_to "User Sign in", user_session_path %></em></li>
+</ol>
+<div class="page-header">
+  <h2>Sign in</h2>
+</div>
 <div class="row">
   <div class="col-md-8">
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
