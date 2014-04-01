@@ -1,0 +1,33 @@
+<h1><%= @topic.name %></h1>
+
+<% if policy(@topic).update? %>
+  <p><%= link_to "Edit Topic", edit_topic_path, class: 'btn btn-success' %></p>
+<% end %>
+
+<div class="row">
+  <div class="col-md-8">
+    <p class="lead"><%= @topic.description %></p>
+    <!--Checks to see if the @topics.posts array is empty. If empty, no posts--> 
+      <% if !@topic.posts.empty? %>
+        <h2>Related Posts</h2>
+      <% end %>
+      <% @topic.posts.each do |post| %>
+      <div class="media">
+        <div class="media-body">
+          <h4 class="media-heading">
+            <%= link_to post.title, [@topic, post] %>
+          </h4>
+          <small>
+            &raquo; submitted <%= time_ago_in_words(post.created_at) %> ago by <em><%= post.user.name %></em> | Comments (<%= post.comments.count %>)
+          </small>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="col-md-4">
+    <% if policy(Post.new).create? %>
+      <%= link_to "Create New Post", new_topic_post_path(@topic), class: 'btn btn-success' %>
+    <% end %>
+  </div>
+</div>
+

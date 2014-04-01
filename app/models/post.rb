@@ -3,6 +3,7 @@ class Post < ActiveRecord::Base
   #comments related to is
   has_many :comments
   belongs_to :user
+  belongs_to :topic
   #Order the post by their created_at date, in descending order
   # displays the most recent posts first
   default_scope { order('created_at DESC') }
