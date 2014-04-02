@@ -3,6 +3,7 @@ class PostsController < ApplicationController
     @topic = Topic.find(params[:topic_id])
     @post = Post.find(params[:id])
     @post.increment
+    @id = @post.id
   end
 
   def new

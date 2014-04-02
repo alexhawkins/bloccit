@@ -70,9 +70,17 @@ a {
   }
 }
 
-//bootstrap tab navigation
+//bootstrap tab naåvigation
 .tab-content {
   padding-top: 10px;
+}
+
+//adding padding to Related Posts lists using last-child selector
+
+.media {
+  &:last-child {
+    padding-bottom: 50px;
+  }
 }
 
 

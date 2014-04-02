@@ -5,14 +5,17 @@
   <li><%= link_to  @post.title,  topic_post_path %></li>
 </ol>
 
-<h1><%= @post.title %></h1>
+<h1><%= markdown(@post.title) %></h1>
 <small> submitted <%= time_ago_in_words(@post.created_at) %> ago by <em><%= @post.user.name %></em> | Comments (<%= @post.comments.count %>)
 </small>
 
 <div class="row">
   <div class="col-md-8">
     <hr>
-    <p><%= @post.body %></p>
+    <p><%= markdown(@post.body) %></p>
+    <% if @topic.post_count.to_i > 1 %>
+        <%= render partial: 'related_posts', locals: { topic: @topic, post: @post} %>
+    <% end %>
   </div>
   <div class="col-md-4">
     <% if policy(@post).edit? %>

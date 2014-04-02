@@ -45,6 +45,8 @@ end
 gem 'faker'
 gem 'devise'
 gem 'pundit'
+# Enable post Markdown ala Github style
+gem 'redcarpet'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

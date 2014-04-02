@@ -1,4 +1,9 @@
+<div class="page-header">
+  <h3>Related Posts</h3>
+</div>
+<% count = 0 %>
 <% topic.posts.each do |post| %>
+  <% if @id != post.id && count < 5 %>
       <div class="media">
         <div class="media-body">
           <h4 class="media-heading">
@@ -9,4 +14,6 @@
           </small>
         </div>
       </div>
+    <% count += 1 %>
+  <% end %>
 <% end %>
