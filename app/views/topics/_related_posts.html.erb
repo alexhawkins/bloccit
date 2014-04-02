@@ -1,0 +1,12 @@
+<% topic.posts.each do |post| %>
+  <div class="media">
+    <div class="media-body">
+      <h4 class="media-heading">
+        <%= link_to post.title, [topic, post] %>
+      </h4>
+      <small>
+        &raquo; submitted <%= time_ago_in_words(post.created_at) %> ago by <em><%= post.user.name %></em> in <%= link_to @topic.name, topic_path %> | Comments (<%= post.comments.count %>) | Views (<%= post.views %>)
+      </small>
+    </div>
+  </div>
+<% end %>

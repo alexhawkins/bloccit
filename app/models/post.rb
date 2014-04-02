@@ -7,7 +7,9 @@ class Post < ActiveRecord::Base
   #after_create :increment_counter
   #Order the post by their created_at date, in descending order
   # displays the most recent posts first
+  
   default_scope { order('views DESC') }
+  
 
   validates :title, length: { minimum: 5 }, presence: true 
   validates :body, length: {minimum: 20 }, presence: true

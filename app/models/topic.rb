@@ -7,4 +7,8 @@ class Topic < ActiveRecord::Base
    self.save
   end
 
+  def popular(count = 10)
+    order('popularity_score DESC').limit(count)
+  end
+
 end

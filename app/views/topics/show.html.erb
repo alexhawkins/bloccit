@@ -7,35 +7,44 @@
 <h1><%= @topic.name %></h1>
 
 <% if policy(@topic).update? %>
-  <p><%= link_to "Edit Topic", edit_topic_path, class: 'btn btn-success' %></p>
+<p>
+  <%= link_to "Edit Topic", edit_topic_path, class: 'btn btn-success' %>
+</p>
 <% end %>
 
 <div class="row">
   <div class="col-md-8">
     <p class="lead"><%= @topic.description %></p>
     <!--Checks to see if the @topics.posts array is empty. If empty, no posts--> 
-      <% if !@topic.posts.empty? %>
-        <div class="page-header">
-          <h2>Related Posts</h2>
-        </div>
-      <% end %>
-      <% @topic.posts.each do |post| %>
-      <div class="media">
-        <div class="media-body">
-          <h4 class="media-heading">
-            <%= link_to post.title, [@topic, post] %>
-          </h4>
-          <small>
-            &raquo; submitted <%= time_ago_in_words(post.created_at) %> ago by <em><%= post.user.name %></em> in <%= link_to @topic.name, topic_path %> | Comments (<%= post.comments.count %>) | Views (<%= post.views %>)
-          </small>
-        </div>
+    <% if !@topic.posts.empty? %>
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs">
+      <li class="active"><a href="#related" data-toggle="tab">Related Posts</a></li>
+      <li><a href="#popular" data-toggle="tab">Popular Posts</a></li>
+      <li><a href="#latest" data-toggle="tab">Latest Posts</a></li>
+    </ul>
+    <!-- Tab panes -->
+    <div class="tab-content">
+    <!--Related Posts -->
+      <div class="tab-pane active" id="related">
+        <%= render partial: 'related_posts', locals: { topic: @topic, post: @post } %>
       </div>
-    <% end %>
-  </div>
-  <div class="col-md-4">
-    <% if policy(Post.new).create? %>
-      <%= link_to "Create New Post", new_topic_post_path(@topic), class: 'btn btn-success' %>
-    <% end %>
-  </div>
+      <!--Popular Posts -->
+      <div class="tab-pane" id="popular">
+         <%= render partial: 'popular_posts', locals: { topic: @topic, post: @post } %>
+      </div>
+      <!--Latest Posts -->
+      <div class="tab-pane" id="latest">
+        <%= render partial: 'latest_posts', locals: { topic: @topic, post: @post } %>
+      </div>
+    </div>
+  <% end %>
+</div>
+<!--Sidebar Column -->
+<div class="col-md-4">
+  <% if policy(Post.new).create? %>
+  <%= link_to "Create New Post", new_topic_post_path(@topic), class: 'btn btn-success' %>
+  <% end %>
+</div>
 </div>
 
