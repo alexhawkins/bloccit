@@ -2,6 +2,7 @@ class PostsController < ApplicationController
   def show
     @topic = Topic.find(params[:topic_id])
     @post = Post.find(params[:id])
+    @post.increment
   end
 
   def new
@@ -23,6 +24,7 @@ class PostsController < ApplicationController
 
     authorize @post
     if @post.save
+      @topic.post_increment
       redirect_to [@topic, @post], notice: "Post was saved successfully."
     else
       flash[:error] = "There was an error saving the post. Please try again."

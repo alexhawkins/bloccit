@@ -6,4 +6,8 @@ module ApplicationHelper
     home_title = "Bloccit"
     home_title
   end
+
+  def render_user_info(user)
+    "#{user.name}, #{user.email}"
+  end
 end
