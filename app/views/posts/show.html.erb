@@ -6,11 +6,12 @@
 </ol>
 
 <h1><%= markdown(@post.title) %></h1>
-<small> submitted <%= time_ago_in_words(@post.created_at) %> ago by <em><%= @post.user.name %></em> | Comments (<%= @post.comments.count %>)
-</small>
 
 <div class="row">
   <div class="col-md-8">
+    <%= image_tag(@post.user.avatar.tiny.url) if @post.user.avatar? %>
+      <small> submitted <%= time_ago_in_words(@post.created_at) %> ago by <em><%= @post.user.name %></em> | Comments (<%= @post.comments.count %>)
+      </small>
     <hr>
     <p><%= markdown(@post.body) %></p>
     <% if @topic.post_count.to_i > 1 %>

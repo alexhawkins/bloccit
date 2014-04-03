@@ -19,3 +19,8 @@ doc/
 .idea
 .secret
 bundler_stubs/
+# Ignore application configuration
+/config/application.yml
+
+# Carrierwave image
+public/uploads

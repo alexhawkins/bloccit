@@ -47,7 +47,13 @@ gem 'devise'
 gem 'pundit'
 # Enable post Markdown ala Github style
 gem 'redcarpet'
-
+gem 'carrierwave'
+gem 'mini_magick'
+# Avatar uploader that supports Amazon S3 storage
+gem 'fog'
+#"~> 1.3.1"
+# Handle Security credentials
+gem 'figaro'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
