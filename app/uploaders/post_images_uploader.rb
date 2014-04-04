@@ -24,10 +24,10 @@ class PostImagesUploader < CarrierWave::Uploader::Base
   #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
   # end
 
-  process resize_to_fill: [300, 300]
+  process resize_to_fill: [600, 300]
 
   version :thumb do
-    process resize_to_fill: [50, 50]
+    process resize_to_fill: [45, 45]
   end
 
   # Add a white list of extensions which are allowed to be uploaded.
