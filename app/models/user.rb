@@ -5,8 +5,17 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
   has_many :posts
   mount_uploader :avatar, AvatarUploader
-  
+
+  #after_create :populate_image
+
   def role?(base_role)
     role == base_role.to_s
+  end
+
+  def populate_image
+    if avatar.blank? 
+      avatar = "/path/to/default/image.jpg"
+      user.save
+    end
   end
 end

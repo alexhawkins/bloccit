@@ -4,6 +4,12 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post.increment
     @id = @post.id
+    ## Saves user_id of post author and allows us
+    ## to retrieve all of said author's posts at a later time
+    ## by comparing the saved @user_id to all posts with
+    ## that same id. ex:
+    ## Post.all.each { |post| if @user_id == post.user_id }
+    @user_id = @post.user_id
   end
 
   def new

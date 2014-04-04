@@ -1,23 +1,16 @@
-<div class="page-header">
-  <h3>Related Posts</h3>
-</div>
-<% count = 0 %>
-<% topic.posts.each do |post| %>
-  <% if @id != post.id && count < 5 %>
-      <div class="media">
-        <a class="pull-left" href="#">
-        <%= image_tag(post.image.thumb.url, class: "media-object thumbnail") if post.image? %>
-       </a>
-        <div class="media-body">
-          <h4 class="media-heading">
-            <%= link_to markdown(post.title), [topic, post] %>
-          </h4>
-          <small>
-            &raquo; submitted <%= time_ago_in_words(post.created_at) %> ago by <em><%= post.user.name %></em> in <%= link_to topic.name, topic_path(@topic) %> | Comments (<%= post.comments.count %>) | Views (<%= post.views %>)
-          </small>
-        </div>
-      </div>
-    <% count += 1 %>
-  <% end %>
-<% end %>
 
+<% topic.posts.each do |post| %>
+<div class="media">
+  <a class="pull-left" href="#">
+    <%= render_tiny_author_avatar_for(post.user) %>
+  </a>
+  <div class="media-body">
+    <h4 class="media-heading">
+      <%= link_to markdown(post.title), [topic, post] %>
+    </h4>
+    <small>
+      &raquo; submitted <%= time_ago_in_words(post.created_at) %> ago by <em><%= post.user.name %></em> in <%= link_to post.topic.name, topic_path(post.topic) %> | Comments (<%= post.comments.count %>) | Views (<%= post.views %>)
+    </small>
+  </div>
+</div>
+<% end %>

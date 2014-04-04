@@ -9,7 +9,13 @@ class Post < ActiveRecord::Base
   #Order the post by their created_at date, in descending order
   # displays the most recent posts first
   
-  default_scope { order('views DESC') }
+  #set unique scope methods for various post sorting orders
+  default_scope { order('created_at DESC') }
+  scope :popular, -> { order('views DESC').limit(10) }
+  scope :latest, -> { order('created_at DESC').limit(10) }
+  scope :author, -> { order('created_at DESC').limit(10) }
+  
+
   
 
   validates :title, length: { minimum: 5 }, presence: true 

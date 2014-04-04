@@ -1,7 +1,7 @@
 <ol class="breadcrumb">
   <li><%= link_to home_title, root_path %></li>
   <li><%= link_to "Topics", topics_path %></li>
-  <li><%= link_to  @topic.name, topic_path(@topic) %></li>
+  <li><%= link_to  @post.topic.name, topic_path(@post.topic) %></li>
   <li><%= link_to  @post.title,  topic_post_path %></li>
 </ol>
 
@@ -17,14 +17,40 @@
     <!--main post body-->
     <p><%= markdown(@post.body) %></p>
     <!--author info -->
-    <% if @post.user.avatar? %>
       <%= render partial: 'author', locals: { topic: @topic, post: @post} %>
-    <% end %>
-    <!--related posts --> 
-    <% if @topic.post_count.to_i > 1 %>
-        <%= render partial: 'related_posts', locals: { topic: @topic, post: @post} %>
-    <% end %>
+
+ <% if !@topic.posts.empty? %>
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs">
+
+      <li class="active"><a href="#author_posts" data-toggle="tab">Author Posts</a></li>
+      <li><a href="#related" data-toggle="tab">Related Posts</a></li>
+      <li><a href="#popular" data-toggle="tab">Popular Posts</a></li>
+      <li><a href="#latest" data-toggle="tab">Latest Posts</a></li>
+    </ul>
+    <!-- Tab panes -->
+    <div class="tab-content">
+     <!--Author Posts -->
+      <div class="tab-pane active" id="author_posts">
+        <%= render partial: 'author_posts', locals: { topic: @topic, post: @post } %>
+      </div>
+    <!--Related Posts -->
+      <div class="tab-pane" id="related">
+        <%= render partial: 'related_posts', locals: { topic: @topic, post: @post } %>
+      </div>
+      <!--Popular Posts -->
+      <div class="tab-pane" id="popular">
+         <%= render partial: 'topics/popular_posts', locals: { topic: @topic, post: @post } %>
+      </div>
+      <!--Latest Posts -->
+      <div class="tab-pane" id="latest">
+        <%= render partial: 'topics/latest_posts', locals: { topic: @topic, post: @post } %>
+      </div>
+    </div>
+  <% end %>
   </div>
+
+<!--Sidebar Column -->
   <div class="col-md-4">
     <% if policy(@post).edit? %>
     <p><%= link_to "Edit this Post", edit_topic_post_path(@topic, @post), class: 'btn btn-success' %></p>

@@ -25,4 +25,44 @@ module ApplicationHelper
     redcarpet = Redcarpet::Markdown.new(renderer, extensions)
     (redcarpet.render text).html_safe
   end
+## RENDER AVATAR IMAGE FOR NAVIGATION (DEFAULT or USER)
+  def render_tiny_avatar_for(user)
+    if current_user.avatar?
+      image_tag(current_user.avatar.tiny.url).html_safe
+    else
+      image_tag('fallback/default.gif', height: '25px', width: '25px').html_safe
+    end
+  end
+## RENDER AVATAR IMAGE FOR RELATED POSTS LISTS
+  def render_super_tiny_avatar_for(user)
+    if current_user.avatar?
+      image_tag(current_user.avatar.tiny.url).html_safe
+    else
+      image_tag('fallback/default.gif', height: '20px', width: '20px').html_safe
+    end
+  end
+## RENDER AVATAR FOR ABOUT AUTHOR SECTION
+  def render_author_avatar_for(post_user)
+    if post_user.avatar?
+      image_tag(post_user.avatar.url, class: "media-object thumbnail").html_safe
+    else
+      image_tag('fallback/default.gif', height: '90px', width: '90px', class: "media-object thumbnail").html_safe
+    end
+  end
+## RENDER TINY AVATAR FOR INDEX PAGES
+  def render_tiny_author_avatar_for(post_user)
+    if post_user.avatar?
+      image_tag(post_user.avatar.tiny.url).html_safe
+    else
+      image_tag('fallback/default.gif', height: '20px', width: '20px').html_safe
+    end
+  end
+## RENDER SMALL POST IMAGE FOR AUTHOR POSTS
+  def render_small_post_image_for(post)
+    if post.image?
+      image_tag(post.image.thumb.url).html_safe
+    else
+      image_tag('fallback/default.gif', height: '45px', width: '45px').html_safe
+    end
+  end
 end
