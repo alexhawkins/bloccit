@@ -9,11 +9,18 @@
 
 <div class="row">
   <div class="col-md-8">
-    <%= image_tag(@post.user.avatar.tiny.url) if @post.user.avatar? %>
       <small> submitted <%= time_ago_in_words(@post.created_at) %> ago by <em><%= @post.user.name %></em> | Comments (<%= @post.comments.count %>)
       </small>
     <hr>
+    <!--main post image-->
+    <%= image_tag(@post.image.url, class: "thumbnail") if @post.image? %>
+    <!--main post body-->
     <p><%= markdown(@post.body) %></p>
+    <!--author info -->
+    <% if @post.user.avatar? %>
+      <%= render partial: 'author', locals: { topic: @topic, post: @post} %>
+    <% end %>
+    <!--related posts --> 
     <% if @topic.post_count.to_i > 1 %>
         <%= render partial: 'related_posts', locals: { topic: @topic, post: @post} %>
     <% end %>

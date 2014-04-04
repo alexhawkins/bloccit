@@ -1,0 +1,10 @@
+<hr>
+<div class="media">
+  <a class="pull-left" href="#">
+    <%= image_tag(post.user.avatar.url, class: "media-object thumbnail") if post.user.avatar? %>
+  </a>
+  <div class="media-body">
+    <h4 class="media-heading">Written by <%= post.user.name %> </h4>
+    <%= post.user.name %> is a web and print designer from New Jersey. Follow Lou's daily design links on Twitter, and make sure you check out TheWebBlend.com community for the latest in web related news and trends.
+  </div>
+</div>

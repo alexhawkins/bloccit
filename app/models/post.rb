@@ -4,6 +4,7 @@ class Post < ActiveRecord::Base
   has_many :comments # post.comments
   belongs_to :user  #  user.post 
   belongs_to :topic  # topic.post
+  mount_uploader :image, PostImagesUploader
   #after_create :increment_counter
   #Order the post by their created_at date, in descending order
   # displays the most recent posts first
