@@ -1,5 +1,6 @@
 class Comment < ActiveRecord::Base
-  belongs_to :post
+  belongs_to :post   #user.post
+  belongs_to :user  #user.commment
 
   # after_create :increment_counter
 

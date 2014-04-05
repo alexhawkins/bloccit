@@ -41,6 +41,16 @@ module ApplicationHelper
       image_tag('fallback/default.gif', height: '20px', width: '20px').html_safe
     end
   end
+
+  ## RENDER AVATAR FOR ABOUT COMMENT SECTION
+  def render_comment_avatar_for(comment_user)
+    if comment_user.avatar?
+      image_tag(comment_user.avatar.profile.url, class: "media-object thumbnail").html_safe
+    else
+      image_tag('fallback/default.gif', height: '45px', width: '45px', class: "media-object thumbnail").html_safe
+    end
+  end
+
 ## RENDER AVATAR FOR ABOUT AUTHOR SECTION
   def render_author_avatar_for(post_user)
     if post_user.avatar?

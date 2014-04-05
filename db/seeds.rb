@@ -10,16 +10,17 @@ require 'faker'
 
 # Create 15 topics
 topics = []
-15.times do
+posts = []
+50.times do
   topics << Topic.create(
-    name: Faker::Lorem.sentence, 
-    description: Faker::Lorem.paragraph
+    name: Faker::Commerce.color,
+    description: Faker::Lorem.paragraph(10)
   )
 end
 
 
 # Create 5 users with their own posts
-5.times do
+50.times do
   password = Faker::Lorem.characters(10)
   user = User.new(
     name: Faker::Name.name, 
@@ -34,17 +35,29 @@ end
   # The `skip_confirmation!` method sets the confirmation date
   # to avoid sending an email. The `save` method updates the database.
 
-   5.times do
+   10.times do
     topic = topics.first
     post = Post.create(
       user: user,
       topic: topic,
       title: Faker::Lorem.sentence, 
-      body: Faker::Lorem.paragraph)
+      body: Faker::Lorem.paragraph(50)
+      )
+    posts << post
     # set the created_at to a time within the past year
     post.update_attribute(:created_at, Time.now - rand(600..31536000))
 
     topics.rotate!
+  end
+
+  5.times do
+    post = posts.first
+    comment = Comment.create(
+      user: user,
+      post: post,
+      body: Faker::Lorem.paragraph)
+      comment.update_attribute(:created_at, Time.now - rand(600..31536000))
+      posts.rotate!
   end
 end
 

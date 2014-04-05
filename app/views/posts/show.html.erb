@@ -18,20 +18,28 @@
     <p><%= markdown(@post.body) %></p>
     <!--author info -->
       <%= render partial: 'author', locals: { topic: @topic, post: @post} %>
+    <!--comment form which will allow you to insert a new post -->
+      <hr/>
+      <%= render partial: 'comments_form', locals: { topic: @topic, post: @post, comment: @comment } %>
 
  <% if !@topic.posts.empty? %>
     <!-- Nav tabs -->
     <ul class="nav nav-tabs">
 
-      <li class="active"><a href="#author_posts" data-toggle="tab">Author Posts</a></li>
+      <li class="active"><a href="#comments" data-toggle="tab">Comments</a></li>
+       <li><a href="#author_posts" data-toggle="tab">Author Posts</a></li>
       <li><a href="#related" data-toggle="tab">Related Posts</a></li>
       <li><a href="#popular" data-toggle="tab">Popular Posts</a></li>
       <li><a href="#latest" data-toggle="tab">Latest Posts</a></li>
     </ul>
     <!-- Tab panes -->
     <div class="tab-content">
+     <!--Post Comments-->
+     <div class="tab-pane active" id="comments">
+        <%= render partial: 'comments', locals: { topic: @topic, post: @post } %>
+      </div>
      <!--Author Posts -->
-      <div class="tab-pane active" id="author_posts">
+      <div class="tab-pane" id="author_posts">
         <%= render partial: 'author_posts', locals: { topic: @topic, post: @post } %>
       </div>
     <!--Related Posts -->

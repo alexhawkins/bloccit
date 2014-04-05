@@ -10,6 +10,8 @@ class PostsController < ApplicationController
     ## that same id. ex:
     ## Post.all.each { |post| if @user_id == post.user_id }
     @user_id = @post.user_id
+    @comments = @post.comments
+    @comment = Comment.new
   end
 
   def new
