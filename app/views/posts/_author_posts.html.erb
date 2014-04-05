@@ -1,6 +1,3 @@
-<div class="page-header">
-  <h3>Author Posts</h3>
-</div>
 <% Post.all.author.each do |post| %>
   <% if @user_id == post.user_id %>
     <div class="media">

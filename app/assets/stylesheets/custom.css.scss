@@ -83,7 +83,7 @@ a {
   }
 }
 
-//avatar customizations
+//AVATAR CUSTOMIZATIONS
 
 .tiny-avatar-nav{
   padding: 4px;
@@ -91,3 +91,60 @@ a {
   border: 1px solid #888888;
 }
 
+
+//EXTRA PAGINATION
+.bloccit_pagination {
+  background: white;
+  cursor: default;
+  /* self-clearing method: */ }
+  .bloccit_pagination a, .bloccit_pagination span, .bloccit_pagination em {
+    padding: 0.2em 0.8em;
+    display: block;
+    float: left;
+    margin-right: 4px; }
+    .bloccit_pagination .disabled {
+      color: #999999;
+      border: 1px solid #dddddd; 
+      border-radius: 4px;
+      -webkit-border-radius: 4px;
+      -moz-border-radius: 4px;}
+      .bloccit_pagination .current {
+        font-style: normal;
+        font-weight: bold;
+        background: $buttonRed;
+        color: white;
+        border: 1px solid $buttonRed;
+        border-radius: 4px;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;}
+        .bloccit_pagination a {
+          text-decoration: none;
+          color: $buttonRed;
+          border: 1px solid $buttonRed; 
+          border-radius: 4px;
+          -webkit-border-radius: 4px;
+          -moz-border-radius: 4px;}
+          .bloccit_pagination a:hover, .bloccit_pagination a:focus {
+            color: $buttonRedBorder;
+            border-color: $buttonRedBorder; }
+            .bloccit_pagination .page_info {
+              background: #2e6ab1;
+              color: white;
+              padding: 0.4em 0.6em;
+              width: 22em;
+              margin-bottom: 0.3em;
+              text-align: center; }
+              .bloccit_pagination .page_info b {
+                color: #000033;
+                background: #6aa6ed;
+                padding: 0.1em 0.25em; }
+                .bloccit_pagination:after {
+                  content: ".";
+                  display: block;
+                  height: 0;
+                  clear: both;
+                  visibility: hidden; }
+                  * html .bloccit_pagination {
+                    height: 1%; }
+                    *:first-child + html .bloccit_pagination {
+                      overflow: hidden; }

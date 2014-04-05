@@ -60,9 +60,9 @@ module ApplicationHelper
 ## RENDER SMALL POST IMAGE FOR AUTHOR POSTS
   def render_small_post_image_for(post)
     if post.image?
-      image_tag(post.image.thumb.url).html_safe
+      image_tag(post.image_thumb.url, class: 'media-object thumbnail')
     else
-      image_tag('fallback/default.gif', height: '45px', width: '45px').html_safe
+      image_tag('fallback/default_image.jpg', class: 'media-object thumbnail', height: '50px', width: '75px')
     end
   end
 end

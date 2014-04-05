@@ -54,6 +54,7 @@ gem 'fog'
 #"~> 1.3.1"
 # Handle Security credentials
 gem 'figaro'
+gem 'will_paginate', '~> 3.0.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
