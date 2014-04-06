@@ -20,7 +20,7 @@
       <%= render partial: 'author', locals: { topic: @topic, post: @post} %>
     <!--comment form which will allow you to insert a new post -->
       <hr/>
-      <%= render partial: 'comments_form', locals: { topic: @topic, post: @post, comment: @comment } %>
+      <%= render partial: 'comments/comments_form', locals: { topic: @topic, post: @post, comment: @comment } %>
 
  <% if !@topic.posts.empty? %>
     <!-- Nav tabs -->
@@ -36,7 +36,7 @@
     <div class="tab-content">
      <!--Post Comments-->
      <div class="tab-pane active" id="comments">
-        <%= render partial: 'comments', locals: { topic: @topic, post: @post } %>
+        <%= render partial: 'comments/comments', locals: { post: @post } %>
       </div>
      <!--Author Posts -->
       <div class="tab-pane" id="author_posts">

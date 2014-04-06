@@ -2,11 +2,11 @@
     <div class="media">
       <div class="media-body">
         <h4 class="media-heading">
-          <%= link_to markdown(post.title), [topic, post] %>
+          <%= link_to markdown(post.title), [post.topic, post] %>
         </h4>
         <small>
         <%= render_tiny_author_avatar_for(post.user) %>
-         submitted <%= time_ago_in_words(post.created_at) %> ago by <em><%= post.user.name %></em> in <%= link_to post.topic.name, topic_post_path %> | Comments (<%= post.comments.count %>) | Views (<%= post.views %>)
+         submitted <%= time_ago_in_words(post.created_at) %> ago by <em><%= post.user.name %></em> in <%= link_to post.topic.name, topic_path(post.topic) %> | Comments (<%= post.comments.count %>) | Views (<%= post.views %>)
         </small>
       </div>
     </div>

@@ -8,4 +8,7 @@ class Comment < ActiveRecord::Base
   #   post.comment_count += 1
   #   post.save!
   # end
+  # Makes sure that comments are at least 5 characters and the body
+  # is always present
+  validates :body, length: {minimum: 5}, presence: true
 end

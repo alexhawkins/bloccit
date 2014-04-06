@@ -1,0 +1,20 @@
+ <%= form_for [topic, post, comment] do |f| %>
+  <% if post.errors.any? %>
+    <div class="aler alert-danger">
+    <h4>There are <%= pluralize(post.errors.count, "error") %></h4>
+    <ul>
+      <% post.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <% end %>
+  <%= form_group_tag(post.errors[:title]) do %>
+  <div class="form-group">
+    <%= f.text_area :body, rows: 4, cols: 40, class: 'form-control', placeholder: "Enter comment" %>
+  </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.submit "Add Comment", class: 'btn btn-success' %>
+  </div>
+<% end %>
