@@ -35,7 +35,7 @@
   <div class="bloccit_pagination">
       <%= will_paginate @posts, :container => false %>
     </div>
-    <%= render partial: 'related_posts', locals: { topic: @topic, post: @post } %>
+    <%= render partial: 'related_posts', locals: { topic: @topic, posts: @posts } %>
     <!-- Post Pagination -->
     <div class="bloccit_pagination">
       <%= will_paginate @posts, :container => false %>

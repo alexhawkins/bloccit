@@ -3,7 +3,7 @@
     <div class="media">
       <div class="media-body">
         <h4 class="media-heading">
-          <%= link_to markdown(post.title), [topic, post] %>
+          <%= link_to markdown(post.title), [post.topic, post] %>
         </h4>
          <small>
           <%= render_tiny_author_avatar_for(post.user) %>

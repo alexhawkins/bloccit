@@ -15,6 +15,8 @@ class CommentsController < ApplicationController
     else
       flash[:error] = "There was an error saving the comment. Please try again."
     end
+
+    redirect_to [@topic, @post]
   end
 
   def destroy
