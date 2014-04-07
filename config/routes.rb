@@ -8,6 +8,8 @@ Bloccit::Application.routes.draw do
   # ex topics/1/posts
   resources :topics do
     resources :posts, except: [:index] do
+      #need to declare :commetns and :create to declare proper routes 
+      #for creation and destruction. An error will be raised without.
       resources :comments, only: [:create, :destroy]
     end
   end

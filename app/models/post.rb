@@ -1,7 +1,7 @@
 class Post < ActiveRecord::Base
   #the has_many method tells Rails that a Post can havy many
   #comments related to is
-  has_many :comments # post.comments
+  has_many :comments, dependent: :destroy # post.comments
   belongs_to :user  #  user.post 
   belongs_to :topic  # topic.post
   mount_uploader :image, PostImagesUploader

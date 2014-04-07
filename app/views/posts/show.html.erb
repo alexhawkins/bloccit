@@ -9,9 +9,20 @@
 
 <div class="row">
   <div class="col-md-8">
-      <small> submitted <%= time_ago_in_words(@post.created_at) %> ago by <em><%= @post.user.name %></em> | Comments (<%= @post.comments.count %>)
+      <small> submitted <%= time_ago_in_words(@post.created_at) %> ago by <em><%= @post.user.name %></em> | Comments (<%= @post.comments.count %>) | Views (<%= @post.views %>)
       </small>
     <hr>
+    <!--Edit Post for Admins and Creators-->
+    <p>
+      <% if policy(@post).edit? %>
+        <%= link_to "Edit Post", edit_topic_post_path(@topic, @post), class: 'btn btn-sm btn-success' %>
+      <% end %>
+      <!--Delete Post for Admins and Moderators-->
+      <% if policy(@post).destroy? %>
+        <%= link_to "Delete Post", [@topic, @post], method: :delete, class: 'btn btn-sm btn-danger', confirm: 'Are you sure you want to delete this post?' %>
+      <% end %>
+    </p>
+    
     <!--main post image-->
     <%= image_tag(@post.image.url, class: "thumbnail") if @post.image? %>
     <!--main post body-->
@@ -20,7 +31,9 @@
       <%= render partial: 'author', locals: { topic: @topic, post: @post} %>
     <!--comment form which will allow you to insert a new post -->
       <hr/>
+    <% if policy(@comment).create? %>
       <%= render partial: 'comments/comments_form', locals: { topic: @topic, post: @post, comment: @comment } %>
+    <% end %>
 
  <% if !@topic.posts.empty? %>
     <!-- Nav tabs -->
@@ -36,7 +49,7 @@
     <div class="tab-content">
      <!--Post Comments-->
      <div class="tab-pane active" id="comments">
-        <%= render partial: 'comments/comments', locals: { post: @post } %>
+        <%= render partial: 'comments/comments', locals: { topic: @topic, post: @post } %>
       </div>
      <!--Author Posts -->
       <div class="tab-pane" id="author_posts">
@@ -60,9 +73,7 @@
 
 <!--Sidebar Column -->
   <div class="col-md-4">
-    <% if policy(@post).edit? %>
-    <p><%= link_to "Edit this Post", edit_topic_post_path(@topic, @post), class: 'btn btn-success' %></p>
-    <% end %>
+    
   </div>
 </div>
 

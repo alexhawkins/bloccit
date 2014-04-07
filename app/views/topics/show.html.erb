@@ -6,11 +6,15 @@
 
 <h1><%= @topic.name %></h1>
 
-<% if policy(@topic).update? %>
 <p>
-  <%= link_to "Edit Topic", edit_topic_path, class: 'btn btn-success' %>
-</p>
-<% end %>
+  <% if policy(@topic).update? %>
+    <%= link_to "Edit Topic", edit_topic_path, class: 'btn btn-success' %>
+  <% end %>
+  <% if policy(@topic).destroy? %>
+    <%= link_to "Delete Topic", @topic, method: :delete, class: 'btn btn-danger', confirm: 'Are you sure you want to delete this topic' %>
+  <% end %>
+<p>
+
 
 <div class="row">
   <div class="col-md-8">
@@ -31,27 +35,7 @@
   <div class="bloccit_pagination">
       <%= will_paginate @posts, :container => false %>
     </div>
-  <% @topic.posts.each do |post| %>
-    <div class="media">
-    <!-- Pull the post image left, or use default image -->
-      <a class="pull-left" href="#">
-        <% if post.image? %>
-          <%=  image_tag(post.image.image_thumb.url, class: 'media-object thumbnail') %>
-        <% else %>
-          <%= image_tag('fallback/default_image.jpg', class: 'media-object thumbnail', height: '55px', width: '80px') %>
-        <% end %>
-      </a>
-      <div class="media-body">
-        <h4 class="media-heading">
-          <%= link_to markdown(post.title), [@topic, post] %>
-        </h4>
-        <small>
-           <%= render_tiny_author_avatar_for(post.user) %>
-           submitted <%= time_ago_in_words(post.created_at) %> ago by <em><%= post.user.name %></em> in <%= link_to post.topic.name, topic_path(post.topic) %> | Comments (<%= post.comments.count %>) | Views (<%= post.views %>)
-          </small>
-        </div>
-      </div>
-    <% end %>
+    <%= render partial: 'related_posts', locals: { topic: @topic, post: @post } %>
     <!-- Post Pagination -->
     <div class="bloccit_pagination">
       <%= will_paginate @posts, :container => false %>

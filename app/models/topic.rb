@@ -1,5 +1,9 @@
 class Topic < ActiveRecord::Base
-  has_many :posts  # topic.posts
+  #depended: :destroy will delete any dependent posts when a topic
+  # is deleted. This is important since if we delete a topic, posts
+  # belonging to that topic won't know where to go(unless we specifically
+  # delte them) and they will have nothingto belong to anymore.
+  has_many :posts, dependent: :destroy # topic.posts
   default_scope { order('post_count DESC') }
 
   def post_increment
