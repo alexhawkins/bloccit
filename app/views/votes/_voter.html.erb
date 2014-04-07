@@ -1,0 +1,5 @@
+<% if policy(Vote.new).create? %>
+  <%= link_to " ", topic_post_up_vote_path(topic, post), class: 'glyphicon glyphicon-thumbs-up' %>
+  <strong><%= post.points %></strong>
+  <%= link_to " ", topic_post_down_vote_path(topic, post), class: 'glyphicon glyphicon-thumbs-down' %>
+<% end %>

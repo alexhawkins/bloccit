@@ -11,6 +11,8 @@ Bloccit::Application.routes.draw do
       #need to declare :commetns and :create to declare proper routes 
       #for creation and destruction. An error will be raised without.
       resources :comments, only: [:create, :destroy]
+      get '/up-vote' => 'votes#up_vote', as: :up_vote
+      get '/down-vote' => 'votes#down_vote', as: :down_vote
     end
   end
 

@@ -4,16 +4,19 @@
   <li><%= link_to  @post.topic.name, topic_path(@post.topic) %></li>
   <li><%= link_to  @post.title,  topic_post_path %></li>
 </ol>
-
-<h1><%= markdown(@post.title) %></h1>
-
+<!--Post main body -->
 <div class="row">
   <div class="col-md-8">
-      <small> submitted <%= time_ago_in_words(@post.created_at) %> ago by <em><%= @post.user.name %></em> | Comments (<%= @post.comments.count %>) | Views (<%= @post.views %>)
-      </small>
+    <!--Post title -->
+    <h1><%= markdown(@post.title) %></h1>
+    <!--Post submitted by section -->
+    <small> submitted <%= time_ago_in_words(@post.created_at) %> ago by <em><%= @post.user.name %></em> | Comments (<%= @post.comments.count %>) | Views (<%= @post.views %>) |
+    <!--Show post votes -->
+      <%= render partial: 'votes/voter', locals: {topic: @topic, post: @post} %>
+    </small>
     <hr>
     <!--Edit Post for Admins and Creators-->
-    <p>
+    <div>
       <% if policy(@post).edit? %>
         <%= link_to "Edit Post", edit_topic_post_path(@topic, @post), class: 'btn btn-sm btn-success' %>
       <% end %>
@@ -21,7 +24,14 @@
       <% if policy(@post).destroy? %>
         <%= link_to "Delete Post", [@topic, @post], method: :delete, class: 'btn btn-sm btn-danger', confirm: 'Are you sure you want to delete this post?' %>
       <% end %>
-    </p>
+
+      <h4>
+        <%= pluralize(@post.points, 'point') %> | 
+        <%= pluralize(@post.up_votes, 'up vote') %> | 
+        <%= pluralize(@post.down_votes, 'down vote') %> | 
+        <%= render partial: 'votes/voter', locals: {topic: @topic, post: @post} %>
+      </h4> 
+    </div>
     
     <!--main post image-->
     <%= image_tag(@post.image.url, class: "thumbnail") if @post.image? %>
