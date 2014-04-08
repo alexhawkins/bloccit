@@ -1,3 +1,10 @@
+<!-- Makes sure votes aren't visible unless a user is logged in. It checks to see if we can
+create a vote. Since you can only create a vote
+when logged in(see votes_controller when @vote 
+create an @vote instance variable when there is 
+a current_user.id, it can't create a vote instance when a register user is not present, thus you can only view votes when a
+user is logged in. Note that nothing is needed
+in the vote policy. The checking is done in the vote controller.-->
 <% if policy(Vote.new).create? %>
   <%= link_to " ", topic_post_up_vote_path(topic, post), class: 'glyphicon glyphicon-thumbs-up' %>
   <strong><%= post.points %></strong>

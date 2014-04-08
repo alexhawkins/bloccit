@@ -46,6 +46,9 @@ end
     posts << post
     # set the created_at to a time within the past year
     post.update_attribute(:created_at, Time.now - rand(600..31536000))
+    #Update posts table with a rank attribute, by seeding it with fake date 
+    #when resetting the database. 
+    post.update_rank
 
     topics.rotate!
   end
@@ -60,6 +63,7 @@ end
       posts.rotate!
   end
 end
+
 
 # Create an admin user
 admin = User.new(
