@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h1>New comment to "<%= @post.title %>"</h1>
+    <small>
+      By: <%= @comment.user.name %>
+    </small>
+    <p>
+      <%= @comment.body %>
+    </p>
+    <p>
+      <%= link_to "View Comment on site", topic_post_url(@post.topic, @post, anchor: "comment-#{@comment.id}") %>
+    </p>
+  </body>
+</html>
+
+
+<!--Notice that we are using topic_post_url. This is very important. When we use _path we get a "relative URL", such as "topics/3". This works within the context of the website because the browser already knows the base URL. When a user sees this email, they won't be in the application and thus won't have the base URL. Therefore, we have to define it. That is what _url does. It generate an "absolute URL"-->
+
+<!--In our link_to method, we use the anchor option. This adds custom parameters to our URL. In this case, because we used the keyword anchor the URL will look like: "http://myapp.com/topics/3/posts/5#comment-21". This allows us to move the user directly to the comment

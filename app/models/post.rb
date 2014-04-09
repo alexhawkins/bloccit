@@ -7,6 +7,7 @@ class Post < ActiveRecord::Base
   # A post has many votes, but if a post is destroyed
   # the votes for that post need to be destroyed as well
   has_many :votes, dependent: :destroy
+  has_many :favorites, dependent: :destroy
   belongs_to :user  #  user.post 
   belongs_to :topic  # topic.post
   #It's safe to assume that if a user submits a post, they'll 

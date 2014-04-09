@@ -4,6 +4,7 @@
   <li><%= link_to  @post.topic.name, topic_path(@post.topic) %></li>
   <li><%= link_to  @post.title,  topic_post_path %></li>
 </ol>
+
 <!--Post main body -->
 <div class="row">
   <div class="col-md-8">
@@ -24,7 +25,7 @@
       <% if policy(@post).destroy? %>
         <%= link_to "Delete Post", [@topic, @post], method: :delete, class: 'btn btn-sm btn-danger', confirm: 'Are you sure you want to delete this post?' %>
       <% end %>
-
+      <!-- Post Points -->
       <h4>
         <%= pluralize(@post.points, 'point') %> | 
         <%= pluralize(@post.up_votes, 'up vote') %> | 
@@ -37,10 +38,13 @@
     <%= image_tag(@post.image.url, class: "thumbnail") if @post.image? %>
     <!--main post body-->
     <p><%= markdown(@post.body) %></p>
+    <!-- Favorites  -->
+    <h4>
+      <%= render partial: 'favorites/favorite', locals: {topic: @topic, post: @post} %>
+    </h4>
     <!--author info -->
       <%= render partial: 'author', locals: { topic: @topic, post: @post} %>
     <!--comment form which will allow you to insert a new post -->
-      <hr/>
     <% if policy(@comment).create? %>
       <%= render partial: 'comments/comments_form', locals: { topic: @topic, post: @post, comment: @comment } %>
     <% end %>

@@ -1,27 +1,32 @@
 
-  <% post.comments.each do |comment| %>
-    <div class="media">
-      <a class="pull-left" href="#">
-        <%= render_comment_avatar_for(comment.user) %>
-      </a>
-      <div class="media-body">
-       <h4 class="media-heading">
-          <%= comment.user.name %>
-        </h4>
-        <p> 
-          <%= comment.body %>
-        </p>
-        <small>
-          &raquo; submitted <%= time_ago_in_words(comment.created_at) %> ago by <em><%= comment.user.name %> </em>
-        </small>
-        <!--Delete Comment-->
-        <% if policy(comment).destroy? %>
-        <p>
-          <%= link_to "Delete Comment", [topic, post, comment], method: :delete, class: 'btn btn-xs btn-danger', confirm: 'Are you sure you want to delete this post?' %>
-        </p>
-        <% end %>
+    <% post.comments.each do |comment| %>
+    <!--Add a unique id to the content_tag. 
+    Jumping to an anchor is something every browser has supported for a
+    long time. If you provide an id tag after the URL, it will jump to that part of the pag. In this case, we are jumpping to the comments id from
+    a link about a new comment that will show up in the users email-->
+      <%= content_tag :div, class: 'media', id: "comment-#{comment.id}" do %>
+      <div class="media">
+        <a class="pull-left" href="#">
+          <%= render_comment_avatar_for(comment.user) %>
+        </a>
+        <div class="media-body">
+         <h4 class="media-heading">
+            <%= comment.user.name %>
+          </h4>
+          <p> 
+            <%= comment.body %>
+          </p>
+          <small>
+            &raquo; submitted <%= time_ago_in_words(comment.created_at) %> ago by <em><%= comment.user.name %> </em>
+          </small>
+          <!--Delete Comment-->
+          <% if policy(comment).destroy? %>
+          <p>
+            <%= link_to "Delete Comment", [topic, post, comment], method: :delete, class: 'btn btn-xs btn-danger', confirm: 'Are you sure you want to delete this post?' %>
+          </p>
+          <% end %>
 
+        </div>
       </div>
-    </div>
-
+    <% end %>
   <% end %>
