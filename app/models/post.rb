@@ -33,8 +33,10 @@ class Post < ActiveRecord::Base
   
   #set unique scope methods for various post sorting orders
   #Since we want the largest rank numbers displayed first,
-  # we'll use descending (DESC) order
+  # we'll use descending (DESC) order to the default post sort
+  #method to sort by rank
   default_scope { order('rank DESC') }
+  #scope :rank, -> { order('rank DESC') }
   scope :popular, -> { order('views DESC').limit(10) }
   scope :latest, -> { order('created_at DESC').limit(10) }
   scope :author, -> { order('created_at DESC').limit(10) }

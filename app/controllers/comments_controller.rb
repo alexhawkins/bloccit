@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
 
     @comment = current_user.comments.build( comment_params )
     @comment.post = @post
-
+     #see comment policies to see the rules for authorization
     authorize @comment
 
     if @comment.save
@@ -24,7 +24,7 @@ class CommentsController < ApplicationController
     @post = @topic.posts.find(params[:post_id])
 
     @comment = @post.comments.find(params[:id])
-
+     #see policies to see the rules for authorization
     authorize @comment
     if @comment.destroy
       flash[:notice] = "Comment was removed."

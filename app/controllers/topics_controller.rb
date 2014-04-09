@@ -1,7 +1,10 @@
 class TopicsController < ApplicationController
   def index
     #@topics = Topic.all
-    @topics = Topic.paginate(page: params[:page], per_page: 10)
+    #Notice how we can use our visible_to scope like any other method. 
+    #We are not only passing in the current_user, but we are also keeping 
+    #the collection paginated via the paginate method.
+    @topics = Topic.visible_to(current_user).paginate(page: params[:page], per_page: 10)
     #see policies to see the rules for authorization
     authorize @topics
   end
@@ -14,6 +17,9 @@ class TopicsController < ApplicationController
 
   def show
     @topic = Topic.find(params[:id])
+    #see policies to see the rules for authorization
+    authorize @topic
+
     #@posts = @topic.posts
     @posts = @topic.posts.paginate(page: params[:page], per_page: 5)
   end

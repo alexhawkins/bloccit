@@ -1,6 +1,12 @@
 class PostsController < ApplicationController
   def show
     @topic = Topic.find(params[:topic_id])
+    #see topic policies to see the rules for this authorization
+    #we need to authorize the topic to make sure it's not a private
+    #topic, otherwise we will end up showing posts belonging to topics that
+    #are supposed to be private. Obviously this would upset the user
+    #which is not good. Nope.
+    authorize @topic
     @post = Post.find(params[:id])
     @post.increment
     @id = @post.id
@@ -17,12 +23,14 @@ class PostsController < ApplicationController
   def new
     @topic = Topic.find(params[:topic_id])
     @post = Post.new
+    #see policies to see the rules for authorization
     authorize @post
   end
 
   def edit
     @topic = Topic.find(params[:topic_id])
     @post = Post.find(params[:id])
+    #see policies to see the rules for authorization
     authorize @post
   end
 
@@ -30,7 +38,7 @@ class PostsController < ApplicationController
     @topic = Topic.find(params[:topic_id])
     @post = current_user.posts.build(post_params)
     @post.topic = @topic
-
+     #see policies to see the rules for authorization
     authorize @post
     if @post.save
       @topic.post_increment
@@ -44,6 +52,7 @@ class PostsController < ApplicationController
   def update
     @topic = Topic.find(params[:topic_id])
     @post = Post.find(params[:id])
+    #see policies to see the rules for authorization
     authorize @post
     if @post.update_attributes(post_params)
       flash[:notice] = "Post was updated."
@@ -59,6 +68,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
 
     title = @post.title
+    #see policies to see the rules for authorization
     authorize @post
     if @post.destroy
       flash[:notice] = "\"#{title}\" was deleted successfully."
