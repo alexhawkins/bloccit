@@ -32,4 +32,12 @@ class User < ActiveRecord::Base
   def favorited(post)
     self.favorites.where(post_id: post.id).first
   end
+#The voted method takes a post object and returns a vote object
+#if the post argument has an associated record in the votes table.
+#it looks in votes where post_id = the id number of the post and
+#gets the first element stored in that particular array. nil if 
+#if the array is empty. Empty if no votes have been cast.
+  def voted(post)
+    self.votes.where(post_id: post.id).first
+  end
 end

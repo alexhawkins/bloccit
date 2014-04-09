@@ -6,7 +6,11 @@ a current_user.id, it can't create a vote instance when a register user is not p
 user is logged in. Note that nothing is needed
 in the vote policy. The checking is done in the vote controller.-->
 <% if policy(Vote.new).create? %>
-  <%= link_to " ", topic_post_up_vote_path(topic, post), class: 'glyphicon glyphicon-thumbs-up' %>
+  <%= link_to " ", 
+        topic_post_up_vote_path(topic, post), 
+        class: "glyphicon glyphicon-thumbs-up #{(current_user.voted(post) && current_user.voted(post).up_vote?) ? 'voted' : '' }" %>
   <strong><%= post.points %></strong>
-  <%= link_to " ", topic_post_down_vote_path(topic, post), class: 'glyphicon glyphicon-thumbs-down' %>
+ <%= link_to " ", 
+        topic_post_down_vote_path(topic, post), 
+        class: "glyphicon glyphicon-thumbs-down #{(current_user.voted(post) && current_user.voted(post).down_vote?) ? 'voted' : '' }" %>
 <% end %>

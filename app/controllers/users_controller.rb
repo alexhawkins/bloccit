@@ -20,6 +20,6 @@ class UsersController < ApplicationController
   # because users and posts have been associated, post.user.avatar, @post.user.name,
   # post.user.description?
   def user_params
-    params.require(:user).permit(:name, :avatar, :description, :avatar_cache)
+    params.require(:user).permit(:name, :avatar, :description, :email_favorites)
   end
 end
