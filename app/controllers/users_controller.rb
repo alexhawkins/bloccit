@@ -10,6 +10,11 @@ class UsersController < ApplicationController
     end
   end
 
+  def show
+    @user = User.find(params[:id])
+    @posts = @user.posts.visible_to(current_user)
+  end
+
   private
   # Make sure, here, to add any datbase columns you want the user to be able to update.
   # For example, a user can add an about me section which gets stored in the :description

@@ -12,11 +12,10 @@
         <h4 class="media-heading">
           <%= link_to markdown(post.title), [@topic, post] %>
         </h4>
-        <small>
-           <%= render_tiny_author_avatar_for(post.user) %>
-           submitted <%= time_ago_in_words(post.created_at) %> ago by <em><%= post.user.name %></em> in <%= link_to post.topic.name, topic_path(post.topic) %> | Comments (<%= post.comments.count %>) | Views (<%= post.views %>) | <%= post.rank.to_i %>
-            <%= render partial: 'votes/voter', locals: {topic: topic, post: post } %>
-          </small>
+        <!--render submitted by/ user info/ post count etc  -->
+         <%= render partial: 'users/submitted_by', locals: {topic: topic, post: post } %>
+        <!--render votes -->
+        <%= render partial: 'votes/voter', locals: {topic: topic, post: post } %>
         </div>
       </div>
     <% end %>

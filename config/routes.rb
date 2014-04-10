@@ -2,7 +2,7 @@ Bloccit::Application.routes.draw do
 
   get "comments/new"
   devise_for :users
-  resources :users, only: [:update]
+  resources :users, only: [:show, :update]
   #By calling resources :posts in the resources :topics block, you
   #are instructing Rails to create nested routes.
   # ex topics/1/posts

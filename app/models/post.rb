@@ -36,6 +36,7 @@ class Post < ActiveRecord::Base
   # we'll use descending (DESC) order to the default post sort
   #method to sort by rank
   default_scope { order('rank DESC') }
+  scope :visible_to, ->(user) { user ? scoped : joins(:topic).where('topics.public' => true) }
   #scope :rank, -> { order('rank DESC') }
   scope :popular, -> { order('views DESC').limit(10) }
   scope :latest, -> { order('created_at DESC').limit(10) }

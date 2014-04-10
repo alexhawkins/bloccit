@@ -75,4 +75,11 @@ module ApplicationHelper
       image_tag('fallback/default_image.jpg', class: 'media-object thumbnail', height: '50px', width: '75px')
     end
   end
+#This method will return exactly what we need for our comment partial 
+# - an array of topic, post and comment objects
+  def comment_url_helper(comment)
+    post = comment.post
+    topic = post.topic
+    [topic, post, comment]
+  end
 end
