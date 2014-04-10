@@ -20,7 +20,7 @@
             &raquo; submitted <%= time_ago_in_words(comment.created_at) %> ago by <em><%= comment.user.name %> </em>
           </small>
           <!--Delete Comment-->
-          <% if policy(comment).destroy? %>
+          <% if policy(comment).destroy?  %>
           <p>
              <%= link_to "Delete", comment_url_helper(comment), method: :delete, class: 'btn btn-xs btn-danger', confirm: 'Are you sure you want to delete this post?' %>
           </p>
