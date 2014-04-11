@@ -1,0 +1,16 @@
+<hr>
+<div class="media">
+  <a class="pull-left" href="#">
+    <%= render_author_avatar_for(post.user) %> 
+  </a>
+  <div class="media-body">
+    <h4 class="media-heading">
+      Written by <%= post.user.name %> 
+    </h4>
+      <% if post.user.description? %>
+        <%= post.user.description %>
+      <% else %>
+        <%= post.user.name %> is a web and print designer from New Jersey. Follow <%= post.user.name.split[0].to_s %>'s daily design links on Twitter, and make sure you check out TheWebBlend.com community for the latest in web related news and trends.
+      <% end %>
+  </div>
+</div>

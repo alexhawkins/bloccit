@@ -47,7 +47,7 @@ module ApplicationHelper
     if comment_user.avatar?
       image_tag(comment_user.avatar.profile.url, class: "media-object thumbnail").html_safe
     else
-      image_tag('fallback/default.gif', height: '45px', width: '45px', class: "media-object thumbnail").html_safe
+      image_tag('fallback/default.gif', height: '55px', width: '55px', class: "media-object thumbnail").html_safe
     end
   end
 

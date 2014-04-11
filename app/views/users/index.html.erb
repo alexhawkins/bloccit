@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="col-md-8">
+    <h1>Popular Users</h1>
+    <p class="lead">Most active users</p>
+    <p class="bloccit_pagination">
+    <%= will_paginate @users, :container => false, class: 'bloccit_pagination' %>
+    </p>
+    <%= render partial: 'users/user', collection: @users %>
+    <p class="bloccit_pagination">
+    <%= will_paginate @users, :container => false, class: 'bloccit_pagination' %>
+    </p>
+  </div>
+  <div class="col-md-4">
+  </div>
+</div>

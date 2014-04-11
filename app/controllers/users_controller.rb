@@ -15,6 +15,10 @@ class UsersController < ApplicationController
     @posts = @user.posts.visible_to(current_user)
   end
 
+  def index
+   @users = User.top_rated.paginate(page: params[:page], per_page: 10)
+  end
+
   private
   # Make sure, here, to add any datbase columns you want the user to be able to update.
   # For example, a user can add an about me section which gets stored in the :description

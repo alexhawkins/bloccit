@@ -1,17 +1,16 @@
 <div class="media">
-  <%= render partial: 'votes/voter', locals: { topic: post.topic, post: post } %>
-  <%= link_to [post.topic, post], class: 'pull-left' do %>
-    <%= image_tag(post.image.thumb.url) if post.image? %>
-  <% end %>
+  <a class="pull-left" href="#">
+        <% if post.image? %>
+          <%=  image_tag(post.image.image_thumb.url, class: 'media-object thumbnail') %>
+        <% else %>
+          <%= image_tag('fallback/default_image.jpg', class: 'media-object thumbnail', height: '55px', width: '80px') %>
+        <% end %>
+      </a>
   <div class="media-body">
     <h4 class="media-heading">
       <%= link_to (markdown post.title), [post.topic, post] %>
     </h4>
-    <small>
-      <%= image_tag(post.user.avatar.tiny.url) if post.user.avatar? %>
-      submitted <%= time_ago_in_words(post.created_at) %> ago by
-      <%= link_to post.user.name, post.user %><br/>
-      <%= post.comments.count %> Comments
-    </small>
+    <%= render partial: 'users/submitted_by', locals: { topic: post.topic, post: post } %>
+    <%= render partial: 'votes/voter', locals: { topic: post.topic, post: post } %>
   </div>
 </div>

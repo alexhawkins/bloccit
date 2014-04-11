@@ -1,0 +1,14 @@
+<div class="media">
+  <a class="pull-left" href="#">
+        <%= render_comment_avatar_for(user) %>
+      </a>
+  <div class="media-body">
+    <h4 class="media-heading">
+        <%= link_to user.name, user %>
+    </h4>
+    <small>
+      <%= pluralize(user.posts_count, 'post') %>
+      <%= pluralize(user.comments_count, 'comment') %>
+    </small>
+  </div>
+</div>

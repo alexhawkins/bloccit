@@ -1,8 +1,8 @@
-<small>
+ <small>
   <%= render_tiny_author_avatar_for(post.user) %>
   submitted <%= time_ago_in_words(post.created_at) %> 
-  ago by <em><%= link_to post.user.name, user_path(post.user) %></em> in <%= link_to post.topic.name, topic_path(post.topic) %> 
+  ago by <em><%= link_to post.user.name, user_path(post.user) %></em> in <%= link_to post.topic.name, topic_path(post.topic) %>
   | Comments (<%= post.comments.count %>) 
   | Views (<%= post.views %>) 
-  | <%= post.rank.to_i %>
+  | <%= post.rank.round(2)%>
 </small>
