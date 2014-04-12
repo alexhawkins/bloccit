@@ -19,9 +19,11 @@ class TopicsController < ApplicationController
     @topic = Topic.find(params[:id])
     #see policies to see the rules for authorization
     authorize @topic
-
     #@posts = @topic.posts
-    @posts = @topic.posts.paginate(page: params[:page], per_page: 5)
+    #@posts = @topic.posts.paginate(page: params[:page], per_page: 5)
+    #instead of the above, use eager loading to include the user and comments
+    #in the initial query executed from our topics controller
+    @posts = @topic.posts.includes(:user).includes(:comments).includes(:votes).paginate(page: params[:page], per_page: 10)
   end
 
   def edit
