@@ -55,6 +55,13 @@ gem 'fog'
 # Handle Security credentials
 gem 'figaro'
 gem 'will_paginate', '~> 3.0.5'
+
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'factory_girl_rails', '~> 4.0'
+end
+
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
