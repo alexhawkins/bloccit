@@ -1,0 +1,9 @@
+//ActiveRecord has a valid? method which we'll call to check the validity of the comment. 
+//If the comment is not valid, it won't be saved.
+<% if @comment.valid? %>
+  $('.js-comments').prepend("<%= escape_javascript(render(@comment)) %>");
+  $('.new_comment').html("<%= escape_javascript(render partial: 'comments/comments_form', locals: { topic: @topic, post: @post, comment: @new_comment }) %>");
+  $('.js-comments-count').html("<%= @post.comments.count %> Comments");
+<% else %>
+  $('.new_comment').html("<%= escape_javascript(render partial: 'comments/comments_form', locals: { topic: @topic, post: @post, comment: @comment }) %>");
+<% end %>

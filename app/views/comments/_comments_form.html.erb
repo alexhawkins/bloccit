@@ -1,4 +1,5 @@
- <%= form_for [topic, post, comment] do |f| %>
+<!-- add remote: true to enable Ajax on the form -->
+<%= form_for [topic, post, comment], remote: true do |f| %>
   <% if comment.errors.any? %>
     <div class="aler alert-danger">
     <h4>There are <%= pluralize(comment.errors.count, "error") %></h4>

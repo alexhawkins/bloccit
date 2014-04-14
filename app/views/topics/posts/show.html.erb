@@ -65,7 +65,11 @@
      <div class="tab-pane active" id="comments">
      <!--The reason we need to use a partial to render comments insteaid if simply stating 'render @comments' is due to Rails organizational conventions. Before we moved show.html.erb to the topics/posts/ directory, we were able to use some syntactic sugar provided by Rails, since by default, render will look in the parent directory of the view where it's called. But now the parent directory of the current view is topics, and Rails won't be able to find the comment partial. This is why we need to explicitly state the directory and partial as: comments/comment.-->
         <h2 class="js-comments-count"><%= @comments.count %> Comments</h2>
-        <%= render partial: 'comments/comment', collection: @comments %>
+        <!--To add a comment to the top of a list, we'll use the jQuery prepend method. To call prepend, we'll need something to prepend the comment to 
+        . We'll add a class called js-comments and prepend it to that-->
+        <div class='js-comments'>
+          <%= render partial: 'comments/comment', collection: @comments %>
+        </div>
       </div>
      <!--Author Posts -->
       <div class="tab-pane" id="author_posts">

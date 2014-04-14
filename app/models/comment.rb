@@ -8,11 +8,16 @@ class Comment < ActiveRecord::Base
   validates :body, length: {minimum: 5}, presence: true
   validates :user, presence: true
 
-  after_create :send_favorite_emails
   #After a comment is created we call send_favorite_emails. This method
   #grabs the post, finds all of the favorites associated with it and loops 
   #over them. For each favorite, it will create and send a new email.
+  after_create :send_favorite_emails
   
+  #Since we are prepending comments to the top of the list, we should make sure 
+  #that comments are always ordered consistently. For example, if we refresh the 
+  #page after the Ajax response, we want the order to stay consistent. We can 
+  #accomplish this by using a default_scope on our comments
+  default_scope { order('updated_at DESC') }
   private
 
   def send_favorite_emails
