@@ -22,7 +22,8 @@
           <!--Delete Comment-->
           <% if policy(comment).destroy? %>
             <p>
-              <%= link_to "Delete", comment_url_helper(comment), method: :delete %>
+        <!--We also need to enable the delete link in the view to use Ajax. Rails makes this simple as well, just pass a remote: true option to the link_to method. -->
+              <%= link_to "Delete", comment_url_helper(comment), method: :delete, remote: true %>
             </p>
           <% end %>
 

@@ -1,0 +1,14 @@
+
+//Notice that this uses the same id that you added for 
+//#the emails. This is a cool way to select a specific 
+//comment, because it dynamically generates the selector 
+//id using Ruby code.
+<% if @comment.destroyed? %>
+$('#comment-' +<%= @comment.id %>).hide();
+//update the comment count header with each Ajax request! -->
+$('.js-comments-count').html("<%= @post.comments.count %> Comments");
+<% else %>
+//This code adds some HTML prior to the comment, using the flash message from the controller. 
+//It also uses Bootstrap classes to style it. -->
+$('#comment-' +<%= @comment.id %>).prepend("<div class='alert alert-error'><%= flash[:error] %></div>");
+<% end %>

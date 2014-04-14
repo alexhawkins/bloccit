@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
-
+  #this enables the controller to respond to both html and js
+  respond_to :html, :js
   def create
     @topic = Topic.find( params[:topic_id] )
     @post = @topic.posts.find( params[:post_id] )
@@ -33,6 +34,13 @@ class CommentsController < ApplicationController
       flash[:error] = "Comment couldn't be deleted. Try again."
       redirect_to [@topic, @post]
     end
+    # By passing a block to respond_with you can overwrite what to do 
+    # for a particular request format. In this case we are overwriting 
+    # the default behavior for an HTML request
+    respond_with(@comment) do |f|
+      f.html { redirect_to [@topic, @post] }
+    end
+
   end
 
   private
